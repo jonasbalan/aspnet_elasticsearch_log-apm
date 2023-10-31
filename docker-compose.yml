@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  sampleapi:
+    image: ${DOCKER_REGISTRY-}sampleapi
+    build:
+      context: .
+      dockerfile: SampleApi/Dockerfile
+  
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+
+  elastic.apm:
+     image: elastic/apm-server:7.9.2  
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.2
+
+  sampleapi2:
+    image: ${DOCKER_REGISTRY-}sampleapi2
+    build:
+      context: .
+      dockerfile: SampleApi2/Dockerfile
+
+volumes:  
+  elasticsearch-data:
+ 
+
+
