@@ -5,7 +5,13 @@ services:
     image: ${DOCKER_REGISTRY-}sampleapi
     build:
       context: .
-      dockerfile: SampleApi/Dockerfile
+      dockerfile: Services/SampleApi/Dockerfile
+
+  sampleapi2:
+    image: ${DOCKER_REGISTRY-}sampleapi2
+    build:
+      context: .
+      dockerfile: Services/SampleApi2/Dockerfile
   
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
@@ -16,11 +22,7 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.9.2
 
-  sampleapi2:
-    image: ${DOCKER_REGISTRY-}sampleapi2
-    build:
-      context: .
-      dockerfile: SampleApi2/Dockerfile
+  
 
 volumes:  
   elasticsearch-data:

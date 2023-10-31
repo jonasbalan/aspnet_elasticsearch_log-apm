@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\Common.Elasticsearch\Common.Elasticsearch.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Common.Elasticsearch\Common.Elasticsearch.csproj" />
   </ItemGroup>
 
 </Project>
