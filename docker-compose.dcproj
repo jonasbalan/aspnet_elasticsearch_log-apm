@@ -6,10 +6,12 @@
     <ProjectGuid>bb387c3e-f92b-4de8-84dd-df23e727d43f</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>sampleapi</DockerServiceName>
+    <DockerServiceName>SampleMsEnv</DockerServiceName>
+    <AdditionalComposeFilePaths>docker-compose.nginx.yml</AdditionalComposeFilePaths>
   </PropertyGroup>
   <ItemGroup>
     <None Include="apm-server.docker.yml" />
+    <None Include="docker-compose.nginx.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>

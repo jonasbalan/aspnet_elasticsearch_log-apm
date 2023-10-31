@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_container
+    ports:
+      - 5678:5678      
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      
+   # network_mode: host
