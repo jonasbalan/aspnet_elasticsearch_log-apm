@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nginx", "Nginx", "{3439F8D7
 		nginx.conf = nginx.conf
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{C8F14B71-5466-4E59-B40E-3DA41FB6D290}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

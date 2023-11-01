@@ -1,0 +1,50 @@
+#filebeat.inputs:
+#  type: log
+#  enabled: true
+#  paths:
+#    - /var/log/nginx/*.log
+
+output.elasticsearch:
+   hosts: "http://elasticsearch:9200"
+
+
+setup:
+  kibana.host: "http://kibana:5601"
+  dashboards.enable: true
+
+filebeat.modules:
+
+#-------------------------------- Nginx Module --------------------------------
+- module: nginx
+  #Access logs
+  access:
+    enabled: true
+
+     #Set custom paths for the log files. If left empty,
+     #Filebeat will choose the paths depending on your OS.
+    var.paths: ["/var/log/nginx/access.log"]
+
+     #Input configuration (advanced). Any input configuration option
+     #can be added under this section.
+    #input:
+
+  # Error logs
+  error:
+    enabled: true
+
+     #Set custom paths for the log files. If left empty,
+     #Filebeat will choose the paths depending on your OS.
+    var.paths: ["/var/log/nginx/error.log"]
+
+     #Input configuration (advanced). Any input configuration option
+     #can be added under this section.
+    #input:
+
+  #Ingress-nginx controller logs. This is disabled by default. It could be used in Kubernetes environments to parse ingress-nginx logs
+  ingress_controller:
+    enabled: false
+  
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+ 

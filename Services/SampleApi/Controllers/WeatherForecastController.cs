@@ -16,6 +16,8 @@ namespace SampleApi.Controllers
 
         private const string api2UrlBase = "http://sampleapi2:80";
 
+       
+
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
@@ -26,6 +28,7 @@ namespace SampleApi.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            _logger.LogInformation("Init Get WeatherForecast");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -39,7 +42,10 @@ namespace SampleApi.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> GetWithError()
         {
-            throw new Exception("Test elasticsearch");
+            var ex = new Exception("Test elasticsearch");
+            _logger.LogError(ex, "Get With Error");
+            throw ex;
+
         }
 
         [Route("GetFromApi2")]        
