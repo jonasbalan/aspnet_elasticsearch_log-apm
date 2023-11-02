@@ -14,6 +14,8 @@
     <None Include="apm-server.docker.yml" />
     <None Include="docker-compose.filebeat.yml" />
     <None Include="docker-compose.keycloak.yml" />
+    <None Include="docker-compose.kong.override.yml" />
+    <None Include="docker-compose.kong.yml" />
     <None Include="docker-compose.nginx.yml" />
     <None Include="docker-compose.openldap.yml" />
     <None Include="docker-compose.override.yml">
