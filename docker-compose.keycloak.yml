@@ -10,12 +10,20 @@ services:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes
       - POSTGRESQL_USERNAME=bn_keycloak
-      - POSTGRESQL_DATABASE=bitnami_keycloak
+      - POSTGRESQL_DATABASE=bitnami_keycloak     
     volumes:
-      - 'postgresql_data:/bitnami/postgresql'
+      - 'postgresql_data:/bitnami/postgresql'       
 
   keycloak:
     image: docker.io/bitnami/keycloak:22
+    environment:
+      - KEYCLOAK_ENABLE_STATISTICS=true
+      #- KEYCLOAK_EXTRA_ARGS=" -Dkeycloak.import=/opt/jboss/keycloak/imports/postman-realm-export.json"
+      - KEYCLOAK_EXTRA_ARGS=" --import-realm"
+      #- KEYCLOAK_IMPORT=/opt/jboss/keycloak/imports/postman-realm-export.json
+    volumes:
+      #- ./Keycloak:/opt/jboss/keycloak/imports:ro
+      - ./Keycloak:/opt/bitnami/keycloak/data/import:ro
     depends_on:
       - postgresql
     ports:

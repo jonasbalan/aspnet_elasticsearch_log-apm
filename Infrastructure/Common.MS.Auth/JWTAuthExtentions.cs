@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -29,6 +30,8 @@ namespace Common.MS.Auth
                 {
                     OnAuthenticationFailed = x =>
                     {
+                        var logger = x.HttpContext.RequestServices.GetService<ILogger<JwtBearerEvents>>();
+                        logger.LogError(x.Exception, $"JWT Validation fail - {x.Exception.Message}");
                         return Task.CompletedTask;
                     }
                 };

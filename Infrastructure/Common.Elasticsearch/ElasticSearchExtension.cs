@@ -43,7 +43,9 @@ namespace Common.Elasticsearch
                         AutoRegisterTemplate = true,
                         AutoRegisterTemplateVersion = AutoRegisterTemplateVersion.ESv8,
                         IndexFormat = "SampleApi-JFB-Logs-{0:yyyy.MM.dd}",
-                        MinimumLogEventLevel = LogEventLevel.Debug
+                        MinimumLogEventLevel = LogEventLevel.Debug,
+                        IndexAliases = new string[] { "SampleApi-JFB" }
+
                     });
             }
         };
