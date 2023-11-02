@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Common.Elasticsearch\Common.Elasticsearch.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Common.MS.Auth\Common.MS.Auth.csproj" />
     
   </ItemGroup>
 

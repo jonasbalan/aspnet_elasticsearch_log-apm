@@ -6,7 +6,8 @@ services:
     image: nginx:latest
     container_name: nginx_container
     ports:
-      - 5678:5678      
+      - 5678:5678
+      - 80:80 
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/log:/var/log/nginx
