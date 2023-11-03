@@ -17,6 +17,8 @@ services:
       - LDAP_ROOT=dc=example,dc=org
     volumes:
       - 'openldap_data:/bitnami/openldap'
+    networks:
+      - internal.sample.ms.net
 
 volumes:
   openldap_data:

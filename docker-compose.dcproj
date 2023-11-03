@@ -7,11 +7,12 @@
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>SampleMsEnv</DockerServiceName>
-    <AdditionalComposeFilePaths>docker-compose.nginx.yml;docker-compose.filebeat.yml;docker-compose.keycloak.yml;docker-compose.openldap.yml</AdditionalComposeFilePaths>
+    <AdditionalComposeFilePaths>docker-compose.nginx.yml;docker-compose.filebeat.yml;docker-compose.keycloak.yml;docker-compose.openldap.yml;docker-compose.kong.yml</AdditionalComposeFilePaths>
   </PropertyGroup>
   <ItemGroup>
     <None Include=".env" />
     <None Include="apm-server.docker.yml" />
+    <None Include="docker-compose.kong.old.yml" />
     <None Include="docker-compose.filebeat.yml" />
     <None Include="docker-compose.keycloak.yml" />
     <None Include="docker-compose.kong.override.yml" />
@@ -23,6 +24,7 @@
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="Dockerfile.Kong" />
     <None Include="filebeat.yml" />
   </ItemGroup>
 </Project>
