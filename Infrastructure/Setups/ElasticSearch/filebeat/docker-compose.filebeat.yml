@@ -12,7 +12,7 @@ services:
     depends_on:
       - elasticsearch
       - kibana
-      - nginx 
+      # - nginx 
    # environment:      
       #- setup.kibana.host=kibana:5601
       #- output.elasticsearch.hosts=["elasticsearch:9200"]
@@ -21,6 +21,12 @@ services:
       #- filebeat.inputs.paths=["/var/log/nginx/*.log"] 
        
     volumes:
-      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-      - ./nginx/log:/var/log/nginx
+      - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./../nginx/log:/var/log/nginx
+    networks:
+      - elastic-filebeat-net  
        
+networks:
+    elastic-filebeat-net:
+      name: internal.sample.ms.net
+      external: true

@@ -13,19 +13,7 @@ services:
       context: .
       dockerfile: Services/SampleApi2/Dockerfile
   
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
-
-  elastic.apm:
-     image: elastic/apm-server:7.9.2  
-
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.9.2 
-
-  
-
-volumes:  
-  elasticsearch-data:
+ 
  
 
 

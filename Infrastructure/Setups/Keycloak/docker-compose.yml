@@ -12,7 +12,7 @@ services:
       - POSTGRESQL_USERNAME=bn_keycloak
       - POSTGRESQL_DATABASE=bitnami_keycloak
     networks:
-      - internal.sample.ms.net   
+      - keycloak-net  
     volumes:
       - 'postgresql_data:/bitnami/postgresql'       
 
@@ -25,17 +25,37 @@ services:
       #- KEYCLOAK_IMPORT=/opt/jboss/keycloak/imports/postman-realm-export.json
     volumes:
       #- ./Keycloak:/opt/jboss/keycloak/imports:ro
-      - ./Keycloak:/opt/bitnami/keycloak/data/import:ro
+      - ./config:/opt/bitnami/keycloak/data/import:ro
     depends_on:
       - postgresql
     #ports:
     #  - "8080"
     networks:
-      - internal.sample.ms.net
-
+      - keycloak-net
 volumes:
   postgresql_data:
     driver: local
+
+networks:
+    keycloak-net:
+      name: internal.sample.ms.net
+      external: true    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #version: "3.9"

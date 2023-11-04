@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:  
+  
+  elasticsearch:
+    container_name: elasticsearch
+    environment:
+      - xpack.monitoring.enabled=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+      - xpack.security.enabled=false 
+    #ports:
+    #  - "9200"
+    networks:
+      - elastic-net
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+ 
+
+ 
+          
+
+  kibana:
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    #ports:
+    #   - "5601"
+    networks:
+      - elastic-net 
+  
+networks:
+    elastic-net:
+      name: internal.sample.ms.net
+      external: true
