@@ -18,3 +18,35 @@ services:
     paths:
     - /mock
     strip_path: true
+
+- host: sampleapi
+  name: api1_service
+  port: 80
+  protocol: http
+  plugins:
+  - name: oidc
+    config:
+      discovery: http://identity.sample-ms.server.com/realms/sample-ms-jfb/.well-known/openid-configuration
+      client_id: kong
+      client_secret: 7CmJ0WbtLnPlQIzj3yUITMwhYip4dVrq
+  routes:
+  - name: api1_route
+    paths:
+    - /api1
+    strip_path: true
+
+- host: sampleapi2
+  name: api2_service
+  port: 80
+  protocol: http
+  plugins:
+  - name: oidc
+    config:
+      discovery: http://identity.sample-ms.server.com/realms/sample-ms-jfb/.well-known/openid-configuration
+      client_id: kong
+      client_secret: 7CmJ0WbtLnPlQIzj3yUITMwhYip4dVrq
+  routes:
+  - name: api2_route
+    paths:
+    - /api2
+    strip_path: true

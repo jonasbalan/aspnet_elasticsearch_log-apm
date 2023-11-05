@@ -50,7 +50,11 @@ builder.Services.AddJwtSecurity();
 builder.Host.UseSerilog(ElasticSearchExtension.ConfigureLogger);
 
 
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
+
+app.MapHealthChecks("/healthz");
 
 app.ConfigureAPM(app.Configuration);
 

@@ -12,20 +12,20 @@ namespace SampleApi.Controllers
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        };
 
         private readonly ILogger<WeatherForecastController> _logger;
 
         private const string api2UrlBase = "http://sampleapi2:80";
 
-       
+
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
 
-        
+
         [Route("Get")]
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
@@ -40,7 +40,7 @@ namespace SampleApi.Controllers
             .ToArray();
         }
 
-        [Route("GetWithError")]        
+        [Route("GetWithError")]
         [HttpGet]
         public IEnumerable<WeatherForecast> GetWithError()
         {
@@ -50,7 +50,7 @@ namespace SampleApi.Controllers
 
         }
 
-        [Route("GetFromApi2")]        
+        [Route("GetFromApi2")]
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> GetFromApi2([FromServices] IHttpClientFactory httpClientFactory)
         {

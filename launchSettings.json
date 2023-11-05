@@ -8,48 +8,9 @@
       "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
       "serviceActions": {
         "sampleapi": "StartDebugging",
-        "sampleapi2": "StartDebugging",
-        "elastic.apm": "StartWithoutDebugging",
-        "elasticsearch": "StartWithoutDebugging",
-        "filebeat": "StartWithoutDebugging",
-        "keycloak": "StartWithoutDebugging",
-        "kibana": "StartWithoutDebugging",
-        "kong": "StartWithoutDebugging",
-        "konga": "StartWithoutDebugging",
-        "kong-db": "StartWithoutDebugging",
-        "nginx": "StartWithoutDebugging",
-        "openldap": "StartWithoutDebugging",
-        "postgresql": "StartWithoutDebugging",
-        "kong-migrations": "StartWithoutDebugging",
-        "kong-migrations-up": "StartWithoutDebugging"
+        "sampleapi2": "StartDebugging"       
       }
-    },
-    "DockerComposeDatabase": {
-      "commandName": "DockerCompose",
-      "commandVersion": "1.0",
-      "composeProfile": {
-        "includes": [
-          "database"
-        ],
-        "serviceActions": {
-          "kong-db": "StartWithoutDebugging",
-          "kong-migrations": "StartWithoutDebugging",
-          "kong-migrations-up": "StartWithoutDebugging"
-        }
-      }
-    },
-    "docker-compose-Kong": {
-      "commandName": "DockerCompose",
-      "commandVersion": "1.0",
-      "composeProfile": {
-        "includes": [
-          "kong"
-        ],
-        "serviceActions": {
-          "sampleapi": "StartWithoutDebugging",
-          "sampleapi2": "StartWithoutDebugging"
-        }
-      }
-    }
+    }  
+ 
   }
 }

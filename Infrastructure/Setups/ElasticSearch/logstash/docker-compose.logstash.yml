@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:  
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.9.2
+    volumes:     
+      - ./logstash/pipeline/kong-pipeline.conf:/usr/share/logstash/pipeline/kong-pipeline.conf:ro      
+    ports:
+      - "5000:5000"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elastic-log-stash-net
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+
+networks:
+    elastic-log-stash-net:
+      name: internal.sample.ms.net
+      external: true      

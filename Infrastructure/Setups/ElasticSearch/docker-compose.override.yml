@@ -16,10 +16,6 @@ services:
       - elastic-net
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
- 
-
- 
-          
 
   kibana:
     container_name: kibana
