@@ -2,10 +2,10 @@ version: '3.4'
 
 services: 
    elasticsearch:
-     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.14
 
    kibana:
-    image: docker.elastic.co/kibana/kibana:7.9.2   
+    image: docker.elastic.co/kibana/kibana:7.17.14
 
 volumes:  
   elasticsearch-data:

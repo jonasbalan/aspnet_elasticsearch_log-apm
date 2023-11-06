@@ -4,7 +4,7 @@ services:
 
   elastic.apm:
      container_name: elastic-apm
-     image: elastic/apm-server:7.9.2
+     image: elastic/apm-server:7.17.14
      environment:      
       - output.elasticsearch.hosts=["elasticsearch:9200"]
       - apm-server.rum.enabled=true

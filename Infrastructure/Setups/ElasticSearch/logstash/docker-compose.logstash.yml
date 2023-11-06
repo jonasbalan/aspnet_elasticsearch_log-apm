@@ -3,7 +3,7 @@ version: '3.4'
 services:  
 
   logstash:
-    image: docker.elastic.co/logstash/logstash:7.9.2
+    image: docker.elastic.co/logstash/logstash:7.17.14
     volumes:     
       - ./logstash/pipeline/kong-pipeline.conf:/usr/share/logstash/pipeline/kong-pipeline.conf:ro      
     ports:

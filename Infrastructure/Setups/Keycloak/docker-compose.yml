@@ -23,6 +23,7 @@ services:
       #- KEYCLOAK_EXTRA_ARGS=" -Dkeycloak.import=/opt/jboss/keycloak/imports/postman-realm-export.json"
       - KEYCLOAK_EXTRA_ARGS=" --import-realm"
       #- KEYCLOAK_IMPORT=/opt/jboss/keycloak/imports/postman-realm-export.json
+      - KEYCLOAK_LOGLEVEL=DEBUG
     volumes:
       #- ./Keycloak:/opt/jboss/keycloak/imports:ro
       - ./config:/opt/bitnami/keycloak/data/import:ro

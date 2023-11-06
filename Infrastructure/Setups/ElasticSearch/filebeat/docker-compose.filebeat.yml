@@ -7,7 +7,7 @@ services:
     ##entrypoint: ["bash", "-c","chown root:root /usr/share/filebeat/filebeat.yml", "chmod go-w /usr/share/filebeat/filebeat.yml", filebeat -e -strict.perms=false]
     #command: "sh -c 'chmod go-w /usr/share/filebeat/filebeat.yml'"
     command: filebeat -e -strict.perms=false
-    image: docker.elastic.co/beats/filebeat:7.9.2 
+    image: docker.elastic.co/beats/filebeat:7.17.14
     container_name: elastic_filebeat
     depends_on:
       - elasticsearch

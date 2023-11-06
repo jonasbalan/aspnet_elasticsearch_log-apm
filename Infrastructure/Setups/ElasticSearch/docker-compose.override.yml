@@ -9,7 +9,14 @@ services:
       - xpack.watcher.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - discovery.type=single-node
-      - xpack.security.enabled=false 
+      - xpack.security.enabled=false
+      # - ELASTIC_PASSWORD=${ELASTIC_PASSWORD-bitnami}
+      # - KIBANA_SYSTEM_PASSWORD=${KIBANA_PASSWORD-bitnami}
+      # - KIBANA_PASSWORD=${KIBANA_PASSWORD-bitnami}
+      # - xpack.security.http.ssl.enabled=true
+      # - xpack.security.transport.ssl.enabled=true
+      # - elasticsearch.ssl.verificationMode=none
+      # - ELASTICSEARCH_SSL_VERIFICATIONMODE="none"
     #ports:
     #  - "9200"
     networks:
@@ -21,6 +28,11 @@ services:
     container_name: kibana
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
+      # - ELASTICSEARCH_USERNAME=kibana_system
+      # - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD-bitnami}
+      # - elasticsearch.ssl.verificationMode=none
+      # - ELASTICSEARCH_SSL_VERIFICATIONMODE="none"
+      # - server.publicBaseUrl=http://kibana.sample-ms.server.com
     depends_on:
       - elasticsearch
     #ports:
