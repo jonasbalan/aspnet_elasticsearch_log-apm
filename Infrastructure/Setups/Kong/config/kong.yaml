@@ -2,6 +2,8 @@
 _format_version: "2.1"
 _transform: true
 
+
+
 services:
 - host: mockbin.org
   name: example_service
@@ -29,6 +31,11 @@ services:
       discovery: http://identity.sample-ms.server.com/realms/sample-ms-jfb/.well-known/openid-configuration
       client_id: kong
       client_secret: 7CmJ0WbtLnPlQIzj3yUITMwhYip4dVrq
+  - name: elastic-apm
+    enabled: true
+    config:
+      apm_active: true
+      apm_server_url: http://apm-server:8200
   routes:
   - name: api1_route
     paths:
@@ -45,8 +52,15 @@ services:
       discovery: http://identity.sample-ms.server.com/realms/sample-ms-jfb/.well-known/openid-configuration
       client_id: kong
       client_secret: 7CmJ0WbtLnPlQIzj3yUITMwhYip4dVrq
+  - name: elastic-apm
+    enabled: true
+    config:
+      apm_active: true
+      apm_server_url: http://apm-server:8200
   routes:
   - name: api2_route
     paths:
     - /api2
     strip_path: true
+
+

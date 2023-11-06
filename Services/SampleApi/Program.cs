@@ -51,12 +51,13 @@ builder.Host.UseSerilog(ElasticSearchExtension.ConfigureLogger);
 
 
 builder.Services.AddHealthChecks();
+builder.Services.ConfigureZipkin(builder.Configuration);
 
 var app = builder.Build();
 
 app.MapHealthChecks("/healthz");
 
-app.ConfigureAPM(app.Configuration);
+app.UseAPM(app.Configuration);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -71,5 +72,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseZipkin(app.Configuration);
 
 app.Run();

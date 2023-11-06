@@ -11,7 +11,7 @@ namespace Common.Elasticsearch
 {
     public static class ElasticSearchExtension
     {
-        public static void ConfigureAPM(this IApplicationBuilder app, Microsoft.Extensions.Configuration.IConfiguration configuration)
+        public static void UseAPM(this IApplicationBuilder app, Microsoft.Extensions.Configuration.IConfiguration configuration)
         {
             if (!string.IsNullOrEmpty(configuration["ElasticConfiguration:ElasticApm:ServerUrls"]))
                 app.UseAllElasticApm(configuration.GetSection("ElasticConfiguration"));

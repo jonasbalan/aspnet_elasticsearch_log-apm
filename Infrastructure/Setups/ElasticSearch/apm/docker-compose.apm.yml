@@ -7,6 +7,11 @@ services:
      image: elastic/apm-server:7.9.2
      environment:      
       - output.elasticsearch.hosts=["elasticsearch:9200"]
+      - apm-server.rum.enabled=true
+      - setup.kibana.host=kibana:5601
+      - setup.template.settings.index.number_of_replicas=0
+      - apm-server.kibana.enabled=true
+      - apm-server.kibana.host=kibana:5601
      depends_on:
       - elasticsearch
      #ports:
