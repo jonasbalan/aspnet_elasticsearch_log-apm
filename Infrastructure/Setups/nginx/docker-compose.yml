@@ -5,19 +5,17 @@ name: ngnix-stack
 services:
 
   nginx:
-    image: nginx:latest
+    #image: nginx:latest
+    image: owasp/modsecurity-crs:nginx
     container_name: nginx_container
+    # environment:
+    #   - SecRequestBodyLimit=1342177280
+    #   - SecResponseBodyLimit 5242280 
     ports:
       - 5678:5678
       - 80:80 
-    volumes:
-      # - ./config/api-gateway.conf:/etc/nginx/conf.d/api-gateway.conf
-      # - ./config/default.conf:/etc/nginx/conf.d/default.conf
-      # - ./config/direct-api.conf:/etc/nginx/conf.d/direct-api.conf
-      # - ./config/identity.conf:/etc/nginx/conf.d/identity.conf
-      # - ./config/kibana.conf:/etc/nginx/conf.d/kibana.conf
-      # - ./config/kong.conf:/etc/nginx/conf.d/kong.conf
-      - ./config/default.conf:/etc/nginx/conf.d/default.conf
+    volumes:     
+      - ./config/my-backend.conf:/etc/nginx/conf.d/my-backend.conf
       - ./config/custom:/etc/nginx/conf.d/custom
       - ./log:/var/log/nginx
      
