@@ -12,7 +12,7 @@ services:
     #   - SecRequestBodyLimit=1342177280
     #   - SecResponseBodyLimit 5242280 
     ports:
-      - 5678:5678
+      - 443:443
       - 80:80 
     volumes:     
       - ./config/my-backend.conf:/etc/nginx/conf.d/my-backend.conf

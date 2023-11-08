@@ -18,15 +18,25 @@ services:
 
   keycloak:
     image: docker.io/bitnami/keycloak:22
+    # command:
+    #   - bash start-dev --verbose
     environment:
       - KEYCLOAK_ENABLE_STATISTICS=true
-      #- KEYCLOAK_EXTRA_ARGS=" -Dkeycloak.import=/opt/jboss/keycloak/imports/postman-realm-export.json"
+      - KC_HEALTH_ENABLED=true
+      - KEYCLOAK_HEALTH_ENABLED=true      
       - KEYCLOAK_EXTRA_ARGS=" --import-realm"
       #- KEYCLOAK_IMPORT=/opt/jboss/keycloak/imports/postman-realm-export.json
+      #- KEYCLOAK_EXTRA_ARGS=" -Dkeycloak.import=/opt/jboss/keycloak/imports/postman-realm-export.json"
       - KEYCLOAK_LOGLEVEL=DEBUG
+      # - KC_HOSTNAME=identity.sample-ms.server.com
+      - KC_HTTPS_CERTIFICATE_FILE=/etc/x509/https/keycloak-server.crt.pem
+      - KC_HTTPS_CERTIFICATE_KEY_FILE=/etc/x509/https/keycloak-server.key.pem
+
     volumes:
       #- ./Keycloak:/opt/jboss/keycloak/imports:ro
       - ./config:/opt/bitnami/keycloak/data/import:ro
+      - ./config/custom/ssl:/etc/x509/https
+      # - ./../ngnix/config/custom/ssl/cert.key:/etc/x509/https/tls.key:ro
     depends_on:
       - postgresql
     #ports:
