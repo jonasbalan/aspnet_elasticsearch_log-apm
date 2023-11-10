@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -37,7 +38,7 @@ namespace Common.MS.Auth
                 };
                 options.TokenValidationParameters.RequireAudience = true;
                 options.TokenValidationParameters.ValidAudiences = new string[] { "account" };
-                options.TokenValidationParameters.ValidIssuers = new string[] { "http://identity.sample-ms.server.com/realms/sample-ms-jfb" };
+                options.TokenValidationParameters.ValidIssuers = new string[] { "https://identity.sample-ms.server.com/realms/sample-ms-jfb" };
             });
 
             // Ativa o uso do token como forma de autorizar o acesso
@@ -50,6 +51,21 @@ namespace Common.MS.Auth
             });
 
             return services;
+        }
+
+
+        public static async Task<T?> GetJsonWithAuthorizationAsync<T>(this HttpClient client, HttpContext httpContext,  string url)
+        {
+            HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);            
+            var ancestorAuthorization =  httpContext.Request.Headers.Authorization.FirstOrDefault();
+            httpRequestMessage.Headers.Add("Authorization", ancestorAuthorization); 
+            var response = await client.SendAsync(httpRequestMessage);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                return System.Text.Json.JsonSerializer.Deserialize<T>(content);
+            }
+            return default(T);
         }
     }
 }

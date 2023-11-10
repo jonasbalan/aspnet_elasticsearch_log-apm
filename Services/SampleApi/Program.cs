@@ -46,15 +46,16 @@ builder.Services.AddSwaggerGen(c =>
 
 
     );
-builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor().AddHttpClient("internalApis").ConfigurePrimaryHttpMessageHandler(x=> {
+    var handler = new HttpClientHandler();
+    handler.ServerCertificateCustomValidationCallback = (a, b, c, d) => true;
+    return handler;
+});
 builder.Services.AddJwtSecurity();
-
 
 builder.Host.UseSerilog(ElasticSearchExtension.ConfigureLogger);
 
-
 builder.Services.AddHealthChecks();
-builder.Services.ConfigureZipkin(builder.Configuration);
 
 var app = builder.Build();
 
@@ -75,7 +76,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseZipkin(app.Configuration);
 
 app.Run();

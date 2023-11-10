@@ -12,7 +12,7 @@ namespace SamplesApi3.Infrastructure
     public class DoctorScheduleDbContext : DbContext
     {
 
-        public const string connectionString = "Server=postgresql;Port=5432;Database=sample-api3-db;User Id=sample-api3-db-user;Password=sample-api3-db-user-pass;";
+        public const string connectionString = "Server=api3_postgresql;Port=5432;Database=sample-api3-db;User Id=sample-api3-db-user;Password=sample-api3-db-user-pass;";
         public DoctorScheduleDbContext(DbContextOptions<DoctorScheduleDbContext> options) : base(options)
         {
         }

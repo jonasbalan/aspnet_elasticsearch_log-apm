@@ -24,6 +24,8 @@ services:
       sample.ms.net: null
       internal.sample.ms.net:
           ipv4_address: 10.0.0.99
+          aliases:
+            - "internal.api.sample-ms.server.com" 
          
       
 networks: 

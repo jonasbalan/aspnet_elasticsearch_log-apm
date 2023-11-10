@@ -53,17 +53,20 @@ services:
       - kong-db
      
     networks:
-      - kong-net      
-    ports:
-      - "8000:8000" # Listener
-      - "8001:8001" # Admin API
-      - "8443:8443" # Listener  (SSL)
-      - "8444:8444" # Admin API (SSL)
+      kong-net:
+        # aliases:
+        #   - "api.sample-ms.server.com"      
+    # ports:
+    #   - "8000:8000" # Listener
+    #   - "8001:8001" # Admin API
+    #   - "8443:8443" # Listener  (SSL)
+    #   - "8444:8444" # Admin API (SSL)
     environment:
       <<: *kong-env
-      
+        
     extra_hosts:
       - identity.sample-ms.server.com:10.0.0.99
+
     volumes:
       - ./config/kong.yaml:/opt/kong/kong.yaml
       - ./export:/opt/kong/export:ro

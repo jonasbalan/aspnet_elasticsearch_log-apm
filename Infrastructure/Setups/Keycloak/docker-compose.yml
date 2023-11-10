@@ -42,7 +42,10 @@ services:
     #ports:
     #  - "8080"
     networks:
-      - keycloak-net
+      keycloak-net:
+        ipv4_address: 10.0.0.98
+        # aliases:
+        #   - "identity.sample-ms.server.com"
 volumes:
   postgresql_data:
     driver: local
