@@ -14,6 +14,21 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  
+  sampleapi0:
+    container_name: sampleapi-0
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    networks:
+      - api-net
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro   
+ 
 
   sampleapi2:
     container_name: sampleapi2
@@ -30,6 +45,56 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
   
   
+  samplesapi3:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    networks:
+      - api-net
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    depends_on:
+      - postgresql
+  
+  postgresql:    
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      #- ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRESQL_USERNAME=sample-api3-db-user
+      - POSTGRES_PASSWORD=sample-api3-db-user-pass
+      - POSTGRESQL_DATABASE=sample-api3-db
+      #- POSTGRES_DB=sample-api3-db 
+    networks:
+      - api-net
+    volumes:
+      - 'postgresql_data:/bitnami/postgresql' 
+    
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+    - PGADMIN_DEFAULT_EMAIL=user@domain.com
+    - PGADMIN_DEFAULT_PASSWORD=SuperSecret
+    ports:
+      - "9856:80"
+      
+    networks:
+      - api-net
+    depends_on:
+      - postgresql 
+
+  
+
+
+volumes:
+  postgresql_data:
+    name: postgres-api
+    driver: local
+
 networks:
     api-net:
       name: internal.sample.ms.net

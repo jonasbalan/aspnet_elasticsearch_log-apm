@@ -6,6 +6,7 @@ using Serilog.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Elastic.Apm.EntityFrameworkCore;
 
 namespace Common.Elasticsearch
 {

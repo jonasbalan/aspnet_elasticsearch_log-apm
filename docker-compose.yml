@@ -9,13 +9,23 @@ services:
       context: .
       dockerfile: Services/SampleApi/Dockerfile
 
+  sampleapi0:
+    image: ${DOCKER_REGISTRY-}sampleapi
+    
+
   sampleapi2:
     image: ${DOCKER_REGISTRY-}sampleapi2
     build:
       context: .
       dockerfile: Services/SampleApi2/Dockerfile
-  
- 
- 
 
+  samplesapi3:
+    image: ${DOCKER_REGISTRY-}samplesapi3
+    build:
+      context: .
+      dockerfile: Services/SamplesApi3/Dockerfile
+
+  postgresql:
+    image: docker.io/bitnami/postgresql:16
+    
 

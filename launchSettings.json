@@ -4,13 +4,16 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "composeLaunchAction": "LaunchBrowser",
-      "composeLaunchServiceName": "sampleapi",
+      "composeLaunchServiceName": "samplesapi3",
       "composeLaunchUrl": "{Scheme}://localhost:{ServicePort}/swagger",
       "serviceActions": {
         "sampleapi": "StartDebugging",
-        "sampleapi2": "StartDebugging"       
+        "sampleapi2": "StartDebugging",
+        "samplesapi3": "StartDebugging",
+        "pgadmin": "StartWithoutDebugging",
+        "postgresql": "StartWithoutDebugging",
+        "sampleapi0": "StartWithoutDebugging"
       }
-    }  
- 
+    }
   }
 }
