@@ -1,0 +1,683 @@
+{
+	"info": {
+		"_postman_id": "5fb8f403-0f26-4f5d-8e8e-47adc2929365",
+		"name": "Sample-MS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "974895",
+		"_collection_link": "https://winter-water-355774.postman.co/workspace/Gateway-de-pagamento~61fce6a3-9e3e-4dda-a189-1acf158e0cd5/collection/974895-5fb8f403-0f26-4f5d-8e8e-47adc2929365?action=share&source=collection_link&creator=974895"
+	},
+	"item": [
+		{
+			"name": "kong",
+			"item": [
+				{
+					"name": "add zipkin pluguin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "zipkin",
+									"type": "text"
+								},
+								{
+									"key": "config.http_endpoint",
+									"value": "http://zipkin:9411/api/v2/spans",
+									"type": "text"
+								},
+								{
+									"key": "config.sample_ratio",
+									"value": "1.0",
+									"type": "text"
+								},
+								{
+									"key": "config.include_credential",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "config.traceid_byte_count",
+									"value": "16",
+									"type": "text"
+								},
+								{
+									"key": "config.header_type",
+									"value": "preserve",
+									"type": "text"
+								},
+								{
+									"key": "config.default_header_type",
+									"value": "b3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://api.manager.sample-ms.server.com/plugins/",
+							"protocol": "http",
+							"host": [
+								"api",
+								"manager",
+								"sample-ms",
+								"server",
+								"com"
+							],
+							"path": [
+								"plugins",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8001/services/example_service/routes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "paths[]",
+									"value": "/mock",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "example_route",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8001/services/example_service/routes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"services",
+								"example_service",
+								"routes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://api.manager.sample-ms.server.com/services",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "example_service",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "http://mockbin.org",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://api.manager.sample-ms.server.com/services",
+							"protocol": "http",
+							"host": [
+								"api",
+								"manager",
+								"sample-ms",
+								"server",
+								"com"
+							],
+							"path": [
+								"services"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Microservices",
+			"item": [
+				{
+					"name": "API1",
+					"item": [
+						{
+							"name": "WeatherForecast/Get",
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.sample-ms.server.com/api1/WeatherForecast/Get",
+									"protocol": "https",
+									"host": [
+										"api",
+										"sample-ms",
+										"server",
+										"com"
+									],
+									"path": [
+										"api1",
+										"WeatherForecast",
+										"Get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "WeatherForecast/GetWithError",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.sample-ms.server.com/api1/WeatherForecast/GetWithError",
+									"protocol": "https",
+									"host": [
+										"api",
+										"sample-ms",
+										"server",
+										"com"
+									],
+									"path": [
+										"api1",
+										"WeatherForecast",
+										"GetWithError"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "WeatherForecast/GetFromApi2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.sample-ms.server.com/api1/WeatherForecast/GetFromApi2",
+									"protocol": "https",
+									"host": [
+										"api",
+										"sample-ms",
+										"server",
+										"com"
+									],
+									"path": [
+										"api1",
+										"WeatherForecast",
+										"GetFromApi2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "WeatherForecast/GetWithErrorFromApi2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.sample-ms.server.com/api1/WeatherForecast/GetWithErrorFromApi2",
+									"protocol": "https",
+									"host": [
+										"api",
+										"sample-ms",
+										"server",
+										"com"
+									],
+									"path": [
+										"api1",
+										"WeatherForecast",
+										"GetWithErrorFromApi2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "API3",
+					"item": [
+						{
+							"name": "doctor",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.sample-ms.server.com/api3/doctor",
+									"protocol": "https",
+									"host": [
+										"api",
+										"sample-ms",
+										"server",
+										"com"
+									],
+									"path": [
+										"api3",
+										"doctor"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "API2",
+					"item": [
+						{
+							"name": "WeatherForecast/Get",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.sample-ms.server.com/api2/WeatherForecast/Get",
+									"protocol": "https",
+									"host": [
+										"api",
+										"sample-ms",
+										"server",
+										"com"
+									],
+									"path": [
+										"api2",
+										"WeatherForecast",
+										"Get"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "WeatherForecast/GetWithError",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.sample-ms.server.com/api2/WeatherForecast/GetWithError",
+									"protocol": "https",
+									"host": [
+										"api",
+										"sample-ms",
+										"server",
+										"com"
+									],
+									"path": [
+										"api2",
+										"WeatherForecast",
+										"GetWithError"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Doctor",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "state",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "string"
+										},
+										{
+											"key": "clientSecret",
+											"value": "UHYxii2LguR5kJkdSXkMkgAQd7SvXk1n",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJuc1RXd1Q1em9DVDhXOXh3eVNIOEZMQllvTzFyeUMtaVNXSDk5QnJvdy04In0.eyJleHAiOjE2OTg4OTgyMjAsImlhdCI6MTY5ODg5NzkyMCwiYXV0aF90aW1lIjoxNjk4ODkzMjQzLCJqdGkiOiIxOWRmYzQyYi0yZjg3LTQzNGMtOTYwNy0zYzI0Mzk3N2VmN2IiLCJpc3MiOiJodHRwOi8vaWRlbnRpdHkuc2FtcGxlLW1zLnNlcnZlci5jb20vcmVhbG1zL3NhbXBsZS1tcy1qZmIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZDg4MjA2ZjMtNDlhOC00YjNiLWJiNTctZjFlZGQ2ZGJjOTcxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoicG9zdG1hbiIsInNlc3Npb25fc3RhdGUiOiIzMzU0NzE2ZS1kMGY0LTRlYjktOWY0My00N2VjMzEyMjBmODMiLCJhY3IiOiIwIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vb2F1dGgucHN0bW4uaW8iXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zYW1wbGUtbXMtamZiIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiMzM1NDcxNmUtZDBmNC00ZWI5LTlmNDMtNDdlYzMxMjIwZjgzIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6ImpvbmFzIiwiZ2l2ZW5fbmFtZSI6IiIsImZhbWlseV9uYW1lIjoiIn0.1h3Azfa4CI0c6z3kVqsKGhzB3aMCoFW9qBRl1Uf2wWKoMeJIlItdufl_QhCAUVOLqGQVA3thRLltEHmEL9LV5Go1T16zmkv8sXOobEt0rU8xnebFmqf1JzpO2vVrQD9ifm8BVJCI0crJCRI_Xn078GhVW-cy1BZCLUww1uUp50HP8oO4QSpPSuLce8AYBTsOFV11xR7eoGFJY9xZychex7RC8SuKNA3HoTUdRLkiukSHLWWWN3Pvs0p3IP8gKY9DwAlfEzqE8MshrawRWUNskKI3HXjAk8Wi6nHaDYAnOZNB55wZHP0tUgYhphjd3U3tSt0B0GZXk8RLM2BHWz3lTg",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "123mudar",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "jonas",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "http://identity.sample-ms.server.com/realms/sample-ms-jfb/protocol/openid-connect/auth",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "http://identity.sample-ms.server.com/realms/sample-ms-jfb/protocol/openid-connect/token",
+											"type": "string"
+										},
+										{
+											"key": "tokenName",
+											"value": "keycloak",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "client_authentication",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "scope",
+											"value": "openid",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "postman",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.sample-ms.server.com/api2/Doctor",
+									"protocol": "https",
+									"host": [
+										"api",
+										"sample-ms",
+										"server",
+										"com"
+									],
+									"path": [
+										"api2",
+										"Doctor"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "state",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "string"
+										},
+										{
+											"key": "clientSecret",
+											"value": "UHYxii2LguR5kJkdSXkMkgAQd7SvXk1n",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJuc1RXd1Q1em9DVDhXOXh3eVNIOEZMQllvTzFyeUMtaVNXSDk5QnJvdy04In0.eyJleHAiOjE2OTg4OTgyMjAsImlhdCI6MTY5ODg5NzkyMCwiYXV0aF90aW1lIjoxNjk4ODkzMjQzLCJqdGkiOiIxOWRmYzQyYi0yZjg3LTQzNGMtOTYwNy0zYzI0Mzk3N2VmN2IiLCJpc3MiOiJodHRwOi8vaWRlbnRpdHkuc2FtcGxlLW1zLnNlcnZlci5jb20vcmVhbG1zL3NhbXBsZS1tcy1qZmIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZDg4MjA2ZjMtNDlhOC00YjNiLWJiNTctZjFlZGQ2ZGJjOTcxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoicG9zdG1hbiIsInNlc3Npb25fc3RhdGUiOiIzMzU0NzE2ZS1kMGY0LTRlYjktOWY0My00N2VjMzEyMjBmODMiLCJhY3IiOiIwIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vb2F1dGgucHN0bW4uaW8iXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zYW1wbGUtbXMtamZiIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiMzM1NDcxNmUtZDBmNC00ZWI5LTlmNDMtNDdlYzMxMjIwZjgzIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6ImpvbmFzIiwiZ2l2ZW5fbmFtZSI6IiIsImZhbWlseV9uYW1lIjoiIn0.1h3Azfa4CI0c6z3kVqsKGhzB3aMCoFW9qBRl1Uf2wWKoMeJIlItdufl_QhCAUVOLqGQVA3thRLltEHmEL9LV5Go1T16zmkv8sXOobEt0rU8xnebFmqf1JzpO2vVrQD9ifm8BVJCI0crJCRI_Xn078GhVW-cy1BZCLUww1uUp50HP8oO4QSpPSuLce8AYBTsOFV11xR7eoGFJY9xZychex7RC8SuKNA3HoTUdRLkiukSHLWWWN3Pvs0p3IP8gKY9DwAlfEzqE8MshrawRWUNskKI3HXjAk8Wi6nHaDYAnOZNB55wZHP0tUgYhphjd3U3tSt0B0GZXk8RLM2BHWz3lTg",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "123mudar",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "jonas",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "http://identity.sample-ms.server.com/realms/sample-ms-jfb/protocol/openid-connect/auth",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "http://identity.sample-ms.server.com/realms/sample-ms-jfb/protocol/openid-connect/token",
+											"type": "string"
+										},
+										{
+											"key": "tokenName",
+											"value": "keycloak",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "client_authentication",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "scope",
+											"value": "openid",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "postman",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.sample-ms.server.com/api2/User/Get",
+									"protocol": "https",
+									"host": [
+										"api",
+										"sample-ms",
+										"server",
+										"com"
+									],
+									"path": [
+										"api2",
+										"User",
+										"Get"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "https://kibana.sample-ms.server.com/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://kibana.sample-ms.server.com/",
+							"protocol": "https",
+							"host": [
+								"kibana",
+								"sample-ms",
+								"server",
+								"com"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "clientSecret",
+						"value": "WpguJxsIkKNWqf3GlBIfAqpAYfzYTfqY",
+						"type": "string"
+					},
+					{
+						"key": "clientId",
+						"value": "postman2",
+						"type": "string"
+					},
+					{
+						"key": "tokenName",
+						"value": "keycloak",
+						"type": "string"
+					},
+					{
+						"key": "grant_type",
+						"value": "authorization_code",
+						"type": "string"
+					},
+					{
+						"key": "useBrowser",
+						"value": true,
+						"type": "boolean"
+					},
+					{
+						"key": "state",
+						"value": "123mudar",
+						"type": "string"
+					},
+					{
+						"key": "scope",
+						"value": "openid email profile",
+						"type": "string"
+					},
+					{
+						"key": "accessTokenUrl",
+						"value": "http://identity.sample-ms.server.com/realms/sample-ms-jfb/protocol/openid-connect/token",
+						"type": "string"
+					},
+					{
+						"key": "authUrl",
+						"value": "http://identity.sample-ms.server.com/realms/sample-ms-jfb/protocol/openid-connect/auth",
+						"type": "string"
+					},
+					{
+						"key": "refreshRequestParams",
+						"value": [],
+						"type": "any"
+					},
+					{
+						"key": "tokenRequestParams",
+						"value": [],
+						"type": "any"
+					},
+					{
+						"key": "authRequestParams",
+						"value": [],
+						"type": "any"
+					},
+					{
+						"key": "challengeAlgorithm",
+						"value": "S256",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "jonas",
+						"type": "string"
+					},
+					{
+						"key": "password",
+						"value": "123mudar",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					},
+					{
+						"key": "client_authentication",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
