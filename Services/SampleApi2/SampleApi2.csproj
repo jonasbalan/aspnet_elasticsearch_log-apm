@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Common.Elasticsearch\Common.Elasticsearch.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Common.MS.Auth\Common.MS.Auth.csproj" />
   </ItemGroup>
 
 </Project>

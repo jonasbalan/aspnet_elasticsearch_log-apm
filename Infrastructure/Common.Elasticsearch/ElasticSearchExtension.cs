@@ -6,12 +6,13 @@ using Serilog.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Elastic.Apm.EntityFrameworkCore;
 
 namespace Common.Elasticsearch
 {
     public static class ElasticSearchExtension
     {
-        public static void ConfigureAPM(this IApplicationBuilder app, Microsoft.Extensions.Configuration.IConfiguration configuration)
+        public static void UseAPM(this IApplicationBuilder app, Microsoft.Extensions.Configuration.IConfiguration configuration)
         {
             if (!string.IsNullOrEmpty(configuration["ElasticConfiguration:ElasticApm:ServerUrls"]))
                 app.UseAllElasticApm(configuration.GetSection("ElasticConfiguration"));
@@ -26,13 +27,13 @@ namespace Common.Elasticsearch
                 .Enrich.WithProperty("ApplicationName", env.ApplicationName)
                 .Enrich.WithProperty("EnvironmentName", env.EnvironmentName)
                 .Enrich.WithExceptionDetails()
-                .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
-                .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
+                //.MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+                //.MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
                 .WriteTo.Console();
-            if (context.HostingEnvironment.IsDevelopment())
-            {
-                loggerConfiguration.MinimumLevel.Override("SampleApi", LogEventLevel.Debug);              
-            }
+            //if (context.HostingEnvironment.IsDevelopment())
+            //{
+            //    loggerConfiguration.MinimumLevel.Override("SampleApi", LogEventLevel.Debug);              
+            //}
 
             var elasticUrl = context.Configuration.GetValue<string>("ElasticConfiguration:Uri");
             if (!string.IsNullOrEmpty(elasticUrl))
@@ -42,13 +43,18 @@ namespace Common.Elasticsearch
                     {
                         AutoRegisterTemplate = true,
                         AutoRegisterTemplateVersion = AutoRegisterTemplateVersion.ESv8,
-                        IndexFormat = "SampleApi-JFB-Logs-{0:yyyy.MM.dd}",
+                        IndexFormat = $"jfb-logs-{GetApiName()}-{0:yyyy.MM.dd}",
                         MinimumLogEventLevel = LogEventLevel.Debug,
-                        IndexAliases = new string[] { "SampleApi-JFB" }
+                        IndexAliases = new string[] { $"jfb-{GetApiName()}" }
 
                     });
             }
         };
+
+        private static string GetApiName()
+        {
+            return AppDomain.CurrentDomain.FriendlyName;
+        }
 
     }
 }

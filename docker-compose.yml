@@ -1,5 +1,7 @@
 version: '3.4'
 
+name: apis-stack
+
 services:
   sampleapi:
     image: ${DOCKER_REGISTRY-}sampleapi
@@ -7,25 +9,23 @@ services:
       context: .
       dockerfile: Services/SampleApi/Dockerfile
 
+  #sampleapi0:
+  #  image: ${DOCKER_REGISTRY-}sampleapi
+    
+
   sampleapi2:
     image: ${DOCKER_REGISTRY-}sampleapi2
     build:
       context: .
       dockerfile: Services/SampleApi2/Dockerfile
-  
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
 
-  elastic.apm:
-     image: elastic/apm-server:7.9.2  
+  samplesapi3:
+    image: ${DOCKER_REGISTRY-}samplesapi3
+    build:
+      context: .
+      dockerfile: Services/SamplesApi3/Dockerfile
 
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.9.2 
-
-  
-
-volumes:  
-  elasticsearch-data:
- 
-
+  api3_postgresql:
+    image: docker.io/bitnami/postgresql:16
+    
 

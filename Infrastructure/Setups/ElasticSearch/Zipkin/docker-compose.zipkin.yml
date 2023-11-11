@@ -1,0 +1,61 @@
+version: '3.4'
+
+services:  
+  
+  # Use Elasticsearch instead of in-memory storage
+  zipkin:
+    # extends:
+    #   file: docker-compose.yml
+    #   service: zipkin
+    image: openzipkin/zipkin:${TAG:-latest}
+    container_name: zipkin
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411
+    # Uncomment to enable debug logging
+    # command: --logging.level.zipkin2=DEBUG
+    environment:      
+      - STORAGE_TYPE=elasticsearch
+      # Point the zipkin at the storage backend
+      - ES_HOSTS=elasticsearch:9200
+      # Uncomment to see requests to and from elasticsearch
+      # - ES_HTTP_LOGGING=BODY
+       # Uncomment to enable self-tracing
+      # - SELF_TRACING_ENABLED=true
+      # Uncomment to increase heap size
+      # - JAVA_OPTS=-Xms128m -Xmx128m -XX:+ExitOnOutOfMemoryError
+    depends_on:
+      - elasticsearch
+    networks:
+      - zipkin-net
+
+    healthcheck:
+      interval: 5s
+      retries: 10
+      test:
+      - CMD
+      - wget
+      - -O/dev/null
+      - localhost:9411/health
+      timeout: 10s
+    restart: on-failure
+    stop_signal: SIGKILL  
+
+  # zipkin-ui:
+  #   image: openzipkin/zipkin-ui:${TAG:-latest}
+  #   container_name: zipkin-ui
+  #   environment:
+  #     # Change this if connecting to a different zipkin server
+  #     - ZIPKIN_BASE_URL=http://zipkin:9411
+  #   ports:
+  #     - 80
+  #     - 9411
+  #   depends_on:
+  #     - zipkin 
+  #   networks:
+  #     - zipkin-net       
+
+networks:
+    zipkin-net:
+      name: internal.sample.ms.net
+      external: true      

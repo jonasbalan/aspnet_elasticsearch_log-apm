@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+
+  elastic.apm:
+     container_name: elastic-apm
+     image: elastic/apm-server:7.17.14
+     environment:      
+      - output.elasticsearch.hosts=["elasticsearch:9200"]
+      - apm-server.rum.enabled=true
+      - setup.kibana.host=kibana:5601
+      - setup.template.settings.index.number_of_replicas=0
+      - apm-server.kibana.enabled=true
+      - apm-server.kibana.host=kibana:5601
+     depends_on:
+      - elasticsearch
+     #ports:
+     # - "8200"
+     networks:
+      - elastic-apm--net
+     volumes:
+      - ./apm/config/apm-server.docker.yml:/usr/share/apm-server/apm-server.docker.yml   
+
+networks:
+    elastic-apm--net:
+      name: internal.sample.ms.net
+      external: true      

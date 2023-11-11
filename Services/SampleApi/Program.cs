@@ -23,7 +23,8 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "JWT Authorization header using the Bearer scheme",
+        Description = "JWT Authorization header using the Bearer scheme"
+        
     });
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
@@ -33,8 +34,10 @@ builder.Services.AddSwaggerGen(c =>
                               Reference = new OpenApiReference
                               {
                                   Type = ReferenceType.SecurityScheme,
-                                  Id = "Bearer"
-                              }
+                                  Id = "Bearer"                                  
+                              },
+                              In = ParameterLocation.Header,
+                              
                           },
                          new string[] {}
                     }
@@ -43,16 +46,22 @@ builder.Services.AddSwaggerGen(c =>
 
 
     );
-builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor().AddHttpClient("internalApis").ConfigurePrimaryHttpMessageHandler(x=> {
+    var handler = new HttpClientHandler();
+    handler.ServerCertificateCustomValidationCallback = (a, b, c, d) => true;
+    return handler;
+});
 builder.Services.AddJwtSecurity();
-
 
 builder.Host.UseSerilog(ElasticSearchExtension.ConfigureLogger);
 
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
-app.ConfigureAPM(app.Configuration);
+app.MapHealthChecks("/healthz");
+
+app.UseAPM(app.Configuration);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

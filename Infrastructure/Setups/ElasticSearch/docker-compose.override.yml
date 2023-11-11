@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:  
+  
+  elasticsearch:
+    container_name: elasticsearch
+    environment:
+      - xpack.monitoring.enabled=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      # - ELASTIC_PASSWORD=${ELASTIC_PASSWORD-bitnami}
+      # - KIBANA_SYSTEM_PASSWORD=${KIBANA_PASSWORD-bitnami}
+      # - KIBANA_PASSWORD=${KIBANA_PASSWORD-bitnami}
+      # - xpack.security.http.ssl.enabled=true
+      # - xpack.security.transport.ssl.enabled=true
+      # - elasticsearch.ssl.verificationMode=none
+      # - ELASTICSEARCH_SSL_VERIFICATIONMODE="none"
+    #ports:
+    #  - "9200"
+    networks:
+      - elastic-net
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+
+  kibana:
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      # - ELASTICSEARCH_USERNAME=kibana_system
+      # - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD-bitnami}
+      # - elasticsearch.ssl.verificationMode=none
+      # - ELASTICSEARCH_SSL_VERIFICATIONMODE="none"
+      # - server.publicBaseUrl=http://kibana.sample-ms.server.com
+    depends_on:
+      - elasticsearch
+    #ports:
+    #   - "5601"
+    networks:
+      - elastic-net 
+  
+networks:
+    elastic-net:
+      name: internal.sample.ms.net
+      external: true

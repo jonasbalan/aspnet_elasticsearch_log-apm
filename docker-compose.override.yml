@@ -10,10 +10,28 @@ services:
     #  - "80"
     #  - "443"
     networks:
-      - internal.sample.ms.net
+      - api-net
+    extra_hosts:
+    #  - api.sample-ms.server.com:10.0.0.99
+     - "internal.api.sample-ms.server.com:10.0.0.99"   
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  
+  #sampleapi0:
+  #  container_name: sampleapi-0
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #    - ASPNETCORE_URLS=https://+:443;http://+:80
+  #  ports:
+  #    - "80"
+  #    - "443"
+  #  networks:
+  #    - api-net
+  #  volumes:
+  #    - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+  #    - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro   
+ 
 
   sampleapi2:
     container_name: sampleapi2
@@ -24,51 +42,67 @@ services:
     #  - "80"
     #  - "443"
     networks:
-      - internal.sample.ms.net
+      - api-net
+    #extra_hosts:
+    #  - api.sample-ms.server.com:10.0.0.99
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
   
-  elasticsearch:
-    container_name: elasticsearch
-    environment:
-      - xpack.monitoring.enabled=true
-      - xpack.watcher.enabled=false
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - discovery.type=single-node
-      - xpack.security.enabled=false 
-    #ports:
-    #  - "9200"
-    networks:
-      - internal.sample.ms.net
-    volumes:
-      - elasticsearch-data:/usr/share/elasticsearch/data
- 
-
-  elastic.apm:
-     container_name: elastic-apm
-     environment:      
-      - output.elasticsearch.hosts=["elasticsearch:9200"]
-     depends_on:
-      - elasticsearch
-     #ports:
-     # - "8200"
-     networks:
-      - internal.sample.ms.net
-     volumes:
-      - ./apm-server.docker.yml:/usr/share/apm-server/apm-server.docker.yml   
-          
-
-  kibana:
-    container_name: kibana
-    environment:
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
-    depends_on:
-      - elasticsearch
-    #ports:
-    #   - "5601"
-    networks:
-      - internal.sample.ms.net 
   
+  samplesapi3:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    #ports:
+    #  - "80"
+    #  - "443"
+    networks:
+      - api-net
+    #extra_hosts:
+    #  - api.sample-ms.server.com:10.0.0.99
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    depends_on:
+      - api3_postgresql
+  
+  api3_postgresql:
+    container_name: api3_postgresql
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      #- ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRESQL_USERNAME=sample-api3-db-user
+      - POSTGRES_PASSWORD=sample-api3-db-user-pass
+      - POSTGRESQL_DATABASE=sample-api3-db     
+    networks:
+      - api-net
+    volumes:
+      - 'api3_postgresql_data:/bitnami/postgresql' 
+    
+
+  #pgadmin:
+  #  image: dpage/pgadmin4
+  #  environment:
+  #  - PGADMIN_DEFAULT_EMAIL=user@domain.com
+  #  - PGADMIN_DEFAULT_PASSWORD=SuperSecret
+  #  #ports:
+  #  #  - "9856:80"
+      
+  #  networks:
+  #    - api-net
+  #  depends_on:
+  #    - postgresql 
+
+  
+
+
+volumes:
+  api3_postgresql_data:
+    name: postgres-api
+    driver: local
+
 networks:
-    internal.sample.ms.net:
+    api-net:
+      name: internal.sample.ms.net
+      external: true

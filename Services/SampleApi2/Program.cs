@@ -1,4 +1,5 @@
 using Common.Elasticsearch;
+using Common.MS.Auth;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,11 +11,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpContextAccessor().AddHttpClient("internalApis").ConfigurePrimaryHttpMessageHandler(x => {
+    var handler = new HttpClientHandler();
+    handler.ServerCertificateCustomValidationCallback = (a, b, c, d) => true;
+    return handler;
+});
+builder.Services.AddJwtSecurity();
+
 builder.Host.UseSerilog(ElasticSearchExtension.ConfigureLogger);
+
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
-app.ConfigureAPM(app.Configuration);
+app.MapHealthChecks("/healthz");
+
+app.UseAPM(app.Configuration);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -24,6 +36,8 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

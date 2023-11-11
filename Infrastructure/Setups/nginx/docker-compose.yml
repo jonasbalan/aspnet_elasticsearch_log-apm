@@ -1,0 +1,45 @@
+version: '3.4'
+
+name: ngnix-stack
+
+services:
+
+  nginx:
+    #image: nginx:latest
+    image: owasp/modsecurity-crs:nginx
+    container_name: nginx_container
+    # environment:
+    #   - SecRequestBodyLimit=1342177280
+    #   - SecResponseBodyLimit 5242280 
+    ports:
+      - 443:443
+      - 80:80 
+    volumes:     
+      - ./config/my-backend.conf:/etc/nginx/conf.d/my-backend.conf
+      - ./config/custom:/etc/nginx/conf.d/custom
+      - ./log:/var/log/nginx
+     
+    # network_mode: host
+    networks:    
+      sample.ms.net: null
+      internal.sample.ms.net:
+          ipv4_address: 10.0.0.99
+          aliases:
+            - "internal.api.sample-ms.server.com" 
+         
+      
+networks: 
+  sample.ms.net:
+    name: sample.ms.net   
+    driver: bridge
+  internal.sample.ms.net:
+    name: internal.sample.ms.net
+    driver: overlay
+    external: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/16
+        
+    
+  

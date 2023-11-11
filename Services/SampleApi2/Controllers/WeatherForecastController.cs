@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SampleApi2.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -9,7 +11,7 @@ namespace SampleApi2.Controllers
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        };
 
         private readonly ILogger<WeatherForecastController> _logger;
 
@@ -35,7 +37,9 @@ namespace SampleApi2.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> GetWithError()
         {
-            throw new Exception("Test elasticsearch api2");
-        }
+            var ex = new Exception("Test elasticsearch api2");
+            _logger.LogError(ex.Message);
+            throw ex;
+        }     
     }
 }

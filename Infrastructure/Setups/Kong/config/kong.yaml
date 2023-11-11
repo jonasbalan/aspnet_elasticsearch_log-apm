@@ -1,0 +1,66 @@
+# a very minimal declarative config file
+_format_version: "2.1"
+_transform: true
+
+
+
+services:
+- host: mockbin.org
+  name: example_service
+  port: 80
+  protocol: http
+  plugins:
+  - name: oidc
+    config:
+      discovery: http://identity.sample-ms.server.com/realms/sample-ms-jfb/.well-known/openid-configuration
+      client_id: kong
+      client_secret: 7CmJ0WbtLnPlQIzj3yUITMwhYip4dVrq
+  routes:
+  - name: example_route
+    paths:
+    - /mock
+    strip_path: true
+
+- host: sampleapi
+  name: api1_service
+  port: 80
+  protocol: http
+  plugins:
+  - name: oidc
+    config:
+      discovery: http://identity.sample-ms.server.com/realms/sample-ms-jfb/.well-known/openid-configuration
+      client_id: kong
+      client_secret: 7CmJ0WbtLnPlQIzj3yUITMwhYip4dVrq
+  - name: elastic-apm
+    enabled: true
+    config:
+      apm_active: true
+      apm_server_url: http://apm-server:8200
+  routes:
+  - name: api1_route
+    paths:
+    - /api1
+    strip_path: true
+
+- host: sampleapi2
+  name: api2_service
+  port: 80
+  protocol: http
+  plugins:
+  - name: oidc
+    config:
+      discovery: http://identity.sample-ms.server.com/realms/sample-ms-jfb/.well-known/openid-configuration
+      client_id: kong
+      client_secret: 7CmJ0WbtLnPlQIzj3yUITMwhYip4dVrq
+  - name: elastic-apm
+    enabled: true
+    config:
+      apm_active: true
+      apm_server_url: http://apm-server:8200
+  routes:
+  - name: api2_route
+    paths:
+    - /api2
+    strip_path: true
+
+

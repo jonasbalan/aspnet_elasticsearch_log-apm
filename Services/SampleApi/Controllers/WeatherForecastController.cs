@@ -1,3 +1,4 @@
+using Common.MS.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
@@ -12,20 +13,20 @@ namespace SampleApi.Controllers
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        };
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        private const string api2UrlBase = "http://sampleapi2:80";
+        private const string api2UrlBase = "https://internal.api.sample-ms.server.com";
 
-       
+
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
 
-        
+
         [Route("Get")]
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
@@ -40,7 +41,7 @@ namespace SampleApi.Controllers
             .ToArray();
         }
 
-        [Route("GetWithError")]        
+        [Route("GetWithError")]
         [HttpGet]
         public IEnumerable<WeatherForecast> GetWithError()
         {
@@ -50,14 +51,14 @@ namespace SampleApi.Controllers
 
         }
 
-        [Route("GetFromApi2")]        
+        [Route("GetFromApi2")]
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> GetFromApi2([FromServices] IHttpClientFactory httpClientFactory)
         {
-            using var client = httpClientFactory.CreateClient("Api2");
-
+            await Task.Delay(100);// simulate doing something
+            using var client = httpClientFactory.CreateClient("internalApis");
             client.BaseAddress = new Uri(api2UrlBase);
-            IEnumerable<WeatherForecast>? enumerable = await client.GetFromJsonAsync<IEnumerable<WeatherForecast>>("WeatherForecast/get");
+            IEnumerable<WeatherForecast>? enumerable = await client.GetJsonWithAuthorizationAsync<IEnumerable<WeatherForecast>>(HttpContext,"api2/WeatherForecast/get");
             return enumerable ?? Enumerable.Empty<WeatherForecast>();
         }
 
@@ -65,10 +66,10 @@ namespace SampleApi.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> GetWithErrorFromApi2([FromServices] IHttpClientFactory httpClientFactory)
         {
-            using var client = httpClientFactory.CreateClient("Api2");
-
+            await Task.Delay(100);// simulate doing something
+            using var client = httpClientFactory.CreateClient("internalApis");
             client.BaseAddress = new Uri(api2UrlBase);
-            IEnumerable<WeatherForecast>? enumerable = await client.GetFromJsonAsync<IEnumerable<WeatherForecast>>("WeatherForecast/GetWithError");
+            IEnumerable<WeatherForecast>? enumerable = await client.GetJsonWithAuthorizationAsync<IEnumerable<WeatherForecast>>(HttpContext, "api2/WeatherForecast/GetWithError");
             return enumerable ?? Enumerable.Empty<WeatherForecast>();
         }
     }

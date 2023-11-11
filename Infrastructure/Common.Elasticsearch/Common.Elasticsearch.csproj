@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -13,6 +13,8 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.0" />
     <PackageReference Include="Elastic.Apm.NetCoreAll" Version="1.25.0" />
+    <PackageReference Include="Steeltoe.Management.ExporterCore" Version="2.5.5" />
+    <PackageReference Include="Steeltoe.Management.TracingCore" Version="3.2.4" />
   </ItemGroup>
 
 </Project>
