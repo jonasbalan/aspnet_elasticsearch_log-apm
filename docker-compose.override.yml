@@ -44,7 +44,8 @@ services:
     networks:
       - api-net
     #extra_hosts:
-    #  - api.sample-ms.server.com:10.0.0.99
+    ##  - api.sample-ms.server.com:10.0.0.99
+    #   - "internal.api.sample-ms.server.com:10.0.0.99"  
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

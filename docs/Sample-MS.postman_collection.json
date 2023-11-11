@@ -339,86 +339,6 @@
 								"disabledSystemHeaders": {}
 							},
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "state",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "grant_type",
-											"value": "authorization_code",
-											"type": "string"
-										},
-										{
-											"key": "clientSecret",
-											"value": "UHYxii2LguR5kJkdSXkMkgAQd7SvXk1n",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "Bearer",
-											"type": "string"
-										},
-										{
-											"key": "accessToken",
-											"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJuc1RXd1Q1em9DVDhXOXh3eVNIOEZMQllvTzFyeUMtaVNXSDk5QnJvdy04In0.eyJleHAiOjE2OTg4OTgyMjAsImlhdCI6MTY5ODg5NzkyMCwiYXV0aF90aW1lIjoxNjk4ODkzMjQzLCJqdGkiOiIxOWRmYzQyYi0yZjg3LTQzNGMtOTYwNy0zYzI0Mzk3N2VmN2IiLCJpc3MiOiJodHRwOi8vaWRlbnRpdHkuc2FtcGxlLW1zLnNlcnZlci5jb20vcmVhbG1zL3NhbXBsZS1tcy1qZmIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZDg4MjA2ZjMtNDlhOC00YjNiLWJiNTctZjFlZGQ2ZGJjOTcxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoicG9zdG1hbiIsInNlc3Npb25fc3RhdGUiOiIzMzU0NzE2ZS1kMGY0LTRlYjktOWY0My00N2VjMzEyMjBmODMiLCJhY3IiOiIwIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vb2F1dGgucHN0bW4uaW8iXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zYW1wbGUtbXMtamZiIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiMzM1NDcxNmUtZDBmNC00ZWI5LTlmNDMtNDdlYzMxMjIwZjgzIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6ImpvbmFzIiwiZ2l2ZW5fbmFtZSI6IiIsImZhbWlseV9uYW1lIjoiIn0.1h3Azfa4CI0c6z3kVqsKGhzB3aMCoFW9qBRl1Uf2wWKoMeJIlItdufl_QhCAUVOLqGQVA3thRLltEHmEL9LV5Go1T16zmkv8sXOobEt0rU8xnebFmqf1JzpO2vVrQD9ifm8BVJCI0crJCRI_Xn078GhVW-cy1BZCLUww1uUp50HP8oO4QSpPSuLce8AYBTsOFV11xR7eoGFJY9xZychex7RC8SuKNA3HoTUdRLkiukSHLWWWN3Pvs0p3IP8gKY9DwAlfEzqE8MshrawRWUNskKI3HXjAk8Wi6nHaDYAnOZNB55wZHP0tUgYhphjd3U3tSt0B0GZXk8RLM2BHWz3lTg",
-											"type": "string"
-										},
-										{
-											"key": "password",
-											"value": "123mudar",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "jonas",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "http://identity.sample-ms.server.com/realms/sample-ms-jfb/protocol/openid-connect/auth",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "http://identity.sample-ms.server.com/realms/sample-ms-jfb/protocol/openid-connect/token",
-											"type": "string"
-										},
-										{
-											"key": "tokenName",
-											"value": "keycloak",
-											"type": "string"
-										},
-										{
-											"key": "useBrowser",
-											"value": true,
-											"type": "boolean"
-										},
-										{
-											"key": "client_authentication",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "scope",
-											"value": "openid",
-											"type": "string"
-										},
-										{
-											"key": "clientId",
-											"value": "postman",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -444,90 +364,10 @@
 								"disabledSystemHeaders": {}
 							},
 							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "state",
-											"value": "",
-											"type": "string"
-										},
-										{
-											"key": "grant_type",
-											"value": "authorization_code",
-											"type": "string"
-										},
-										{
-											"key": "clientSecret",
-											"value": "UHYxii2LguR5kJkdSXkMkgAQd7SvXk1n",
-											"type": "string"
-										},
-										{
-											"key": "tokenType",
-											"value": "Bearer",
-											"type": "string"
-										},
-										{
-											"key": "accessToken",
-											"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJuc1RXd1Q1em9DVDhXOXh3eVNIOEZMQllvTzFyeUMtaVNXSDk5QnJvdy04In0.eyJleHAiOjE2OTg4OTgyMjAsImlhdCI6MTY5ODg5NzkyMCwiYXV0aF90aW1lIjoxNjk4ODkzMjQzLCJqdGkiOiIxOWRmYzQyYi0yZjg3LTQzNGMtOTYwNy0zYzI0Mzk3N2VmN2IiLCJpc3MiOiJodHRwOi8vaWRlbnRpdHkuc2FtcGxlLW1zLnNlcnZlci5jb20vcmVhbG1zL3NhbXBsZS1tcy1qZmIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiZDg4MjA2ZjMtNDlhOC00YjNiLWJiNTctZjFlZGQ2ZGJjOTcxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoicG9zdG1hbiIsInNlc3Npb25fc3RhdGUiOiIzMzU0NzE2ZS1kMGY0LTRlYjktOWY0My00N2VjMzEyMjBmODMiLCJhY3IiOiIwIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vb2F1dGgucHN0bW4uaW8iXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1zYW1wbGUtbXMtamZiIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiMzM1NDcxNmUtZDBmNC00ZWI5LTlmNDMtNDdlYzMxMjIwZjgzIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInByZWZlcnJlZF91c2VybmFtZSI6ImpvbmFzIiwiZ2l2ZW5fbmFtZSI6IiIsImZhbWlseV9uYW1lIjoiIn0.1h3Azfa4CI0c6z3kVqsKGhzB3aMCoFW9qBRl1Uf2wWKoMeJIlItdufl_QhCAUVOLqGQVA3thRLltEHmEL9LV5Go1T16zmkv8sXOobEt0rU8xnebFmqf1JzpO2vVrQD9ifm8BVJCI0crJCRI_Xn078GhVW-cy1BZCLUww1uUp50HP8oO4QSpPSuLce8AYBTsOFV11xR7eoGFJY9xZychex7RC8SuKNA3HoTUdRLkiukSHLWWWN3Pvs0p3IP8gKY9DwAlfEzqE8MshrawRWUNskKI3HXjAk8Wi6nHaDYAnOZNB55wZHP0tUgYhphjd3U3tSt0B0GZXk8RLM2BHWz3lTg",
-											"type": "string"
-										},
-										{
-											"key": "password",
-											"value": "123mudar",
-											"type": "string"
-										},
-										{
-											"key": "username",
-											"value": "jonas",
-											"type": "string"
-										},
-										{
-											"key": "authUrl",
-											"value": "http://identity.sample-ms.server.com/realms/sample-ms-jfb/protocol/openid-connect/auth",
-											"type": "string"
-										},
-										{
-											"key": "accessTokenUrl",
-											"value": "http://identity.sample-ms.server.com/realms/sample-ms-jfb/protocol/openid-connect/token",
-											"type": "string"
-										},
-										{
-											"key": "tokenName",
-											"value": "keycloak",
-											"type": "string"
-										},
-										{
-											"key": "useBrowser",
-											"value": true,
-											"type": "boolean"
-										},
-										{
-											"key": "client_authentication",
-											"value": "header",
-											"type": "string"
-										},
-										{
-											"key": "scope",
-											"value": "openid",
-											"type": "string"
-										},
-										{
-											"key": "clientId",
-											"value": "postman",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://api.sample-ms.server.com/api2/User/Get",
+									"raw": "https://api.sample-ms.server.com/api2/User/Current",
 									"protocol": "https",
 									"host": [
 										"api",
@@ -538,7 +378,7 @@
 									"path": [
 										"api2",
 										"User",
-										"Get"
+										"Current"
 									]
 								}
 							},
