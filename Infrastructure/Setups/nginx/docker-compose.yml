@@ -34,6 +34,7 @@ networks:
     driver: bridge
   internal.sample.ms.net:
     name: internal.sample.ms.net
+    driver: overlay
     external: false
     ipam:
       driver: default

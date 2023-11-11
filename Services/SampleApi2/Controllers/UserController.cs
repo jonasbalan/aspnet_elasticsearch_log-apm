@@ -4,11 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace SampleApi2.Controllers
 {
     [Authorize]
-    public class UserController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class UserController : ControllerBase
     {
-        public IActionResult Index()
+        [HttpGet]
+        public string Index()
         {
-            return Ok(User.Identity?.Name);
+            return User.Identity?.Name;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace SampleApi.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        private const string api2UrlBase = "https://internal.api.sample-ms.server.com/api2";
+        private const string api2UrlBase = "https://internal.api.sample-ms.server.com";
 
 
 
@@ -58,7 +58,7 @@ namespace SampleApi.Controllers
             await Task.Delay(100);// simulate doing something
             using var client = httpClientFactory.CreateClient("internalApis");
             client.BaseAddress = new Uri(api2UrlBase);
-            IEnumerable<WeatherForecast>? enumerable = await client.GetFromJsonAsync<IEnumerable<WeatherForecast>>("WeatherForecast/get");
+            IEnumerable<WeatherForecast>? enumerable = await client.GetJsonWithAuthorizationAsync<IEnumerable<WeatherForecast>>(HttpContext,"api2/WeatherForecast/get");
             return enumerable ?? Enumerable.Empty<WeatherForecast>();
         }
 
@@ -69,7 +69,7 @@ namespace SampleApi.Controllers
             await Task.Delay(100);// simulate doing something
             using var client = httpClientFactory.CreateClient("internalApis");
             client.BaseAddress = new Uri(api2UrlBase);
-            IEnumerable<WeatherForecast>? enumerable = await client.GetJsonWithAuthorizationAsync<IEnumerable<WeatherForecast>>(HttpContext, "WeatherForecast/GetWithError");
+            IEnumerable<WeatherForecast>? enumerable = await client.GetJsonWithAuthorizationAsync<IEnumerable<WeatherForecast>>(HttpContext, "api2/WeatherForecast/GetWithError");
             return enumerable ?? Enumerable.Empty<WeatherForecast>();
         }
     }
