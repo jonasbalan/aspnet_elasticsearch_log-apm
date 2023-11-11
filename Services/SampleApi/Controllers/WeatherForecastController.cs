@@ -46,7 +46,7 @@ namespace SampleApi.Controllers
         public IEnumerable<WeatherForecast> GetWithError()
         {
             var ex = new Exception("Test elasticsearch");
-            _logger.LogError(ex, "Get With Error");
+            //_logger.LogError(ex, "Get With Error");
             throw ex;
 
         }

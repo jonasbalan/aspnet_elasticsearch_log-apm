@@ -8,6 +8,7 @@ namespace SampleApi2.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
+        [Route("Current")]
         [HttpGet]
         public string Index()
         {

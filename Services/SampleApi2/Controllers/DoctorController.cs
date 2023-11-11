@@ -21,6 +21,7 @@ namespace SampleApi2.Controllers
 
 
         [HttpGet]
+        [Route("GetFromApi3")]
         public async Task<IEnumerable<dynamic>?> GetFromApi3([FromServices] IHttpClientFactory httpClientFactory)
         {
             await Task.Delay(100);// simulate doing something
